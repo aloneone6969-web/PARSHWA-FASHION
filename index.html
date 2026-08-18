@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#17140F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="PF Studio">
+<title>Parshwa Fashion — Infinite Campaign Studio Power V2</title>
+<style>
+:root{--ink:#17140F;--paper:#F3EEE4;--card:#FFFDF8;--line:#D8CFBC;--gold:#C79A4B;--gold2:#8B6423;--muted:#6B6255;--danger:#A8433A;--ok:#2F6B45}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+button,input,select,textarea{font:inherit}button{touch-action:manipulation}
+header{background:linear-gradient(135deg,#17140F,#30291d);color:white;padding:calc(18px + env(safe-area-inset-top)) 16px 18px;border-bottom:2px solid var(--gold)}
+.wrap{max-width:1180px;margin:auto}.head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+.badge{color:#f2c86c;font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.pill{display:inline-block;margin-left:7px;border:1px solid #6d5936;background:#332a1d;color:#f4d89c;padding:3px 7px;border-radius:999px;font-size:9px;font-weight:900}
+h1{font-size:clamp(24px,6vw,36px);line-height:1.04;margin:6px 0}.sub{margin:0;color:#d7d0c6;font-size:12px;line-height:1.45;max-width:760px}
+main{padding:14px 14px 120px}.layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(330px,.8fr);gap:18px}@media(max-width:900px){.layout{grid-template-columns:1fr}.sticky{position:static!important}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:15px;margin-bottom:12px;box-shadow:0 3px 12px rgba(23,20,15,.03)}.goldcard{background:linear-gradient(145deg,#fffdf8,#fbf4e5);border-color:#dec38b}
+.label{display:block;margin:0 0 8px;font-size:10.5px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:var(--gold2)}
+.row{display:flex;gap:8px;align-items:center}.between{justify-content:space-between}.wraprow{flex-wrap:wrap}.grow{flex:1}.two{display:grid;grid-template-columns:1fr 1fr;gap:11px}@media(max-width:580px){.two{grid-template-columns:1fr}}
+input,select,textarea{width:100%;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 12px;color:var(--ink);font-size:13px;outline:none}textarea{min-height:92px;resize:vertical;line-height:1.5}input:focus,select:focus,textarea:focus{border-color:var(--gold2);box-shadow:0 0 0 3px rgba(199,154,75,.14)}
+.btn,.option,.quick{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:12px;padding:9px 11px;font-size:11.5px;font-weight:850;cursor:pointer}.btn:active,.option:active,.quick:active{transform:scale(.985)}.btn.dark{background:var(--ink);color:white;border-color:var(--ink)}.btn.gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:white;border:0}.btn.danger{color:var(--danger);border-color:#dfb7b2}.btn.block{width:100%}
+.options{display:flex;gap:7px;flex-wrap:wrap}.option{border-radius:999px}.option.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.hint{margin-top:6px;color:var(--muted);font-size:10.5px;line-height:1.45}.upload{margin-top:10px;border:2px dashed var(--line);border-radius:15px;background:#fff;text-align:center;padding:18px 12px;cursor:pointer}.upload.drag{border-color:var(--gold);background:#fff9ed}.upload .icon{font-size:30px}.upload strong{display:block;font-size:12px;margin-top:4px}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin-top:10px}.thumb{position:relative;aspect-ratio:1/1;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#eee}.thumb img{width:100%;height:100%;object-fit:cover}.tindex{position:absolute;left:5px;bottom:5px;background:#17140fdd;color:white;padding:3px 6px;border-radius:99px;font-size:9px;font-weight:900}.tactions{position:absolute;right:4px;top:4px;display:flex;gap:3px}.tactions button{width:25px;height:25px;padding:0;border:0;border-radius:50%;background:#17140fe5;color:#fff;font-weight:900}
+.quickgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:7px}.quick{text-align:left;line-height:1.3}.quick.active{border-color:var(--gold2);background:#fff8e9;color:var(--gold2)}
+.status{border:1px solid var(--line);background:#f7f2e9;border-radius:12px;padding:10px 11px;font-size:10.5px;line-height:1.5}.status.ok{background:#edf7f0;border-color:#b6d7c0;color:#245036}.status.warn{background:#fff7e8;border-color:#e8d29c;color:#6d501d}
+.tabs{display:flex;background:#e8e0d4;padding:4px;border-radius:12px;gap:4px}.tab{flex:1;border:0;background:transparent;padding:8px;border-radius:9px;color:var(--muted);font-size:10.5px;font-weight:900}.tab.active{background:var(--ink);color:#fff}
+#promptOut{min-height:540px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;line-height:1.55;background:#faf8f4}.sticky{position:sticky;top:12px}
+.preview{min-height:300px;border:1px dashed var(--line);border-radius:14px;background:#f7f4ee;padding:14px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--muted);font-size:11px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.kpi{border:1px solid var(--line);border-radius:11px;background:#fff;padding:8px}.kpi b{display:block;font-size:15px}.kpi span{font-size:9px;text-transform:uppercase;color:var(--muted);font-weight:900}
+.footer{position:fixed;left:0;right:0;bottom:0;z-index:50;background:#f3eee4f2;backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom))}.footerin{max-width:1180px;margin:auto;display:flex;gap:8px}.footerin .btn{padding:14px 12px;font-size:13px}
+.toast{position:fixed;z-index:100;left:50%;top:calc(10px + env(safe-area-inset-top));transform:translate(-50%,-24px);opacity:0;pointer-events:none;transition:.22s;background:var(--ink);color:white;border-left:4px solid var(--gold);border-radius:11px;padding:10px 14px;max-width:90vw;font-size:11.5px;font-weight:850}.toast.show{transform:translate(-50%,0);opacity:1}.toast.error{border-color:#d05d55}
+.hidden{display:none!important}.divider{height:1px;background:var(--line);margin:12px 0}.tiny{font-size:9.5px;color:var(--muted);line-height:1.45}.checkrow{display:flex;align-items:flex-start;gap:8px;margin:8px 0}.checkrow input{width:auto;margin-top:2px}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap head">
+  <div>
+    <div><span class="badge">◆ Parshwa Fashion Studio</span><span class="pill">POWER V2</span><span class="pill">OFFLINE-FIRST</span></div>
+    <h1>Infinite Campaign Studio</h1>
+    <p class="sub">Upload once, then send the latest locked prompt + product photos to ChatGPT from iPhone in one fast handoff. No API key required.</p>
+  </div>
+  <div class="row wraprow">
+    <button class="btn gold" id="randomAll">🎲 Power Randomize</button>
+    <button class="btn" id="resetBtn">↺ Reset</button>
+  </div>
+</div>
+</header>
+
+<main class="wrap">
+<div class="layout">
+<section>
+
+<div class="card">
+  <span class="label">Brand</span>
+  <div class="options" id="brandOptions">
+    <button class="option active" data-v="PARSHWA FASHION">Parshwa Fashion</button>
+    <button class="option" data-v="MOMO'S PICK">Momo's Pick</button>
+    <button class="option" data-v="CUSTOM">Custom</button>
+  </div>
+  <input id="customBrand" class="hidden" style="margin-top:9px" placeholder="Custom brand name">
+</div>
+
+<div class="card">
+  <div class="row between wraprow">
+    <span class="label" style="margin:0">Product Reference Photos</span>
+    <div class="row wraprow">
+      <button class="btn" id="cameraBtn">📷 Camera</button>
+      <button class="btn danger" id="clearPhotos">Clear</button>
+    </div>
+  </div>
+  <div class="upload" id="dropZone">
+    <div class="icon">🖼️</div>
+    <strong>Tap to select reference photos</strong>
+    <div class="hint">Front, back, close-up, mannequin and colour photos. Use the arrows to put the strongest master reference first.</div>
+  </div>
+  <input id="photoInput" type="file" accept="image/*" multiple class="hidden">
+  <input id="cameraInput" type="file" accept="image/*" capture="environment" class="hidden">
+  <div id="thumbs" class="thumbs"></div><div class="hint"><b>Fast mode:</b> upload all references here once. The ChatGPT button reuses these same files automatically.</div>
+  <div class="kpis">
+    <div class="kpi"><b id="photoCount">0</b><span>References</span></div>
+    <div class="kpi"><b id="colourKpi">Auto</b><span>Colours</span></div>
+    <div class="kpi"><b id="modeKpi">Single</b><span>Mode</span></div>
+  </div>
+</div>
+
+<div class="card goldcard">
+  <div class="row between wraprow"><span class="label" style="margin:0">Worldwide Campaign</span><button class="btn" id="randomLocation">🌍 Random Location</button></div>
+  <select id="campaign" style="margin-top:9px">
+    <option value="AUTO">AUTO — select the strongest premium campaign environment for this garment</option>
+    <option>Paris Haussmannian limestone boulevard, golden late-afternoon editorial light, cafe depth, premium European campaign</option>
+    <option>Milan luxury fashion district, polished stone, architectural reflections, restrained Italian styling</option>
+    <option>Santorini whitewashed coastal alley, Aegean sea glimpse, bougainvillea, warm Mediterranean sunlight</option>
+    <option>Seoul Seongsu creative district, clean concrete, steel, floor-to-ceiling windows, premium K-fashion editorial</option>
+    <option>Tokyo modern street editorial, elegant urban geometry, cinematic evening reflections, no distracting signage</option>
+    <option>New York SoHo cast-iron architecture, cobblestone texture, Manhattan editorial afternoon</option>
+    <option>Dubai desert luxury retreat, sculptural dunes, low golden sun, sophisticated minimal styling</option>
+    <option>Jaipur heritage courtyard, refined pink sandstone architecture, warm luxury editorial light</option>
+    <option>Private Mediterranean resort terrace, white stone, sea horizon, understated luxury vacation campaign</option>
+    <option>Premium charcoal studio, controlled directional light, soft shadow falloff, zero background distraction</option>
+  </select>
+  <input id="customLocation" style="margin-top:8px" placeholder="Or type ANY custom location / set">
+</div>
+
+<div class="card">
+  <div class="row between wraprow"><span class="label" style="margin:0">Model Direction</span><button class="btn" id="randomModel">👤 Random Model</button></div>
+  <select id="model" style="margin-top:9px">
+    <option value="AUTO">AUTO — choose the strongest model aesthetic for this product and target market</option>
+    <option>Premium South Asian female fashion model, age 20-24, natural warm skin, glossy dark hair, elegant commercial confidence</option>
+    <option>Young Indian female model around 20, refined modern styling, natural skin texture, expressive eyes, premium fashion posture</option>
+    <option>Young Korean female model around 20, refined Ulzzang styling, soft natural hair, realistic skin, modern K-fashion confidence</option>
+    <option>European high-fashion female model, striking editorial features, natural skin texture, premium runway confidence</option>
+    <option>Mediterranean female model, warm olive complexion, dark wavy hair, sophisticated resort editorial styling</option>
+    <option>South Asian male fashion model age 22-26, clean editorial grooming, confident premium posture</option>
+    <option>K-fashion boy child model age 5-8, natural cheerful expression, age-appropriate kidswear styling</option>
+  </select>
+  <input id="customModel" style="margin-top:8px" placeholder="Or type your exact model description">
+</div>
+
+<div class="card">
+  <div class="two">
+    <div>
+      <span class="label">Shoot Mode</span>
+      <div class="options" id="modeOptions">
+        <button class="option active" data-v="single">Single</button>
+        <button class="option" data-v="all">All Colours</button>
+        <button class="option" data-v="closeup">Close-up</button>
+        <button class="option" data-v="back">Back</button>
+        <button class="option" data-v="frontback">Front + Back</button>
+      </div>
+    </div>
+    <div>
+      <span class="label">Aspect Ratio</span>
+      <select id="aspect"><option>9:16</option><option>4:5</option><option>1:1</option><option>16:9</option></select>
+    </div>
+  </div>
+  <div class="two" style="margin-top:11px">
+    <div>
+      <span class="label">Exact Colour Count</span>
+      <input id="colourCount" type="number" min="0" max="30" value="0">
+      <div class="hint">0 = detect only from references.</div>
+    </div>
+    <div>
+      <span class="label">Product Category</span>
+      <select id="category">
+        <option>Auto identify from visible construction</option>
+        <option>Top / Shirt only</option><option>T-shirt only</option><option>Pants / Trousers only</option>
+        <option>Co-ord set only</option><option>Dress / One piece</option><option>Jumpsuit / Romper</option>
+        <option>Kids top / T-shirt</option><option>Kids matching set</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="two">
+    <div>
+      <span class="label">Pose</span>
+      <select id="pose">
+        <option value="AUTO">AUTO — natural premium pose that best exposes product construction</option>
+        <option>Confident natural standing pose, relaxed shoulders, asymmetric hands, garment front fully visible</option>
+        <option>Walking stride with subtle fabric movement, full body visible, natural arms and realistic hands</option>
+        <option>Three-quarter editorial stance, slight body rotation while keeping key garment front details visible</option>
+        <option>Relaxed architectural lean, premium expression, no body pose that hides garment details</option>
+        <option>Seated luxury editorial pose that clearly preserves garment drape and length</option>
+      </select>
+    </div>
+    <div>
+      <span class="label">Camera / Optics</span>
+      <select id="camera">
+        <option>85mm commercial fashion photography, crisp garment detail, natural perspective, soft premium background separation</option>
+        <option>50mm editorial photography, realistic proportions, balanced environmental context, sharp textile detail</option>
+        <option>35mm cinematic street editorial, dynamic environment while garment remains dominant</option>
+        <option>135mm luxury compression, strong subject separation, smooth natural bokeh</option>
+        <option>Clean catalogue photography, neutral perspective, even flattering light, maximum product readability</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <span class="label">Power Product Locks</span>
+  <div class="quickgrid" id="quickGrid">
+    <button class="quick" data-t="Full body shot. Show complete garment length, bottom hem and styling bottom clearly.">↕ Full body</button>
+    <button class="quick" data-t="Keep the top untucked with natural slightly loose fit unless the reference clearly shows otherwise.">◫ Untucked / loose</button>
+    <button class="quick" data-t="Use tint blue baggy jeans only as a separate styling garment; never treat them as part of the sold product.">👖 Tint blue jeans</button>
+    <button class="quick" data-t="Prioritize true fabric weave, texture, sheen level, stitching, seams and print/embroidery fidelity.">🔍 Fabric fidelity</button>
+    <button class="quick" data-t="No bag, jacket, scarf, overshirt, necklace or distracting accessory.">⊘ No accessories</button>
+    <button class="quick" data-t="Use premium soft natural sunlight with realistic directional shadows and believable skin tones.">☀ Natural sunlight</button>
+    <button class="quick" data-t="Do not add any pocket. Preserve only the exact print/graphic visible in the reference.">🚫 No pocket</button>
+    <button class="quick" data-t="Fabric has a subtle realistic shine; preserve the exact sheen without making it metallic or glossy plastic.">✦ Slight shine</button>
+    <button class="quick" data-t="Keep the exact original garment length from the reference. Do not crop, lengthen or shorten it.">📏 Exact length</button>
+    <button class="quick" data-t="Preserve exact neckline/collar, sleeve shape, cuff, hem, waistband, closures and drawstrings from reference.">🔒 Construction lock</button>
+  </div>
+</div>
+
+<div class="card">
+  <span class="label">Special Corrections / Product Notes</span>
+  <textarea id="instructions" placeholder="Examples:
+• Exactly 5 colours; no green.
+• Purple is light lavender, not dark purple.
+• No pocket — chest detail is print only.
+• Fabric is slightly shiny.
+• Pant shape must remain exactly like reference."></textarea>
+</div>
+
+<div class="card">
+  <div class="two">
+    <div>
+      <span class="label">Watermark</span>
+      <input id="watermark" value="PARSHWA FASHION">
+    </div>
+    <div>
+      <span class="label">Watermark Style</span>
+      <select id="watermarkStyle">
+        <option>Old Parshwa style — repeat text 3 times horizontally across middle-lower frame, thin elegant semi-transparent white serif</option>
+        <option>Single subtle lower-centre semi-transparent white serif watermark</option>
+        <option>Small clean lower-right watermark, elegant white serif</option>
+        <option>No watermark</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+</section>
+
+<aside>
+<div class="sticky">
+  <div class="tabs">
+    <button class="tab active" data-tab="prompt">MASTER PROMPT</button>
+    <button class="tab" data-tab="send">CHATGPT HANDOFF</button>
+  </div>
+
+  <div id="promptTab" class="card" style="margin-top:9px">
+    <div class="row between wraprow">
+      <span class="label" style="margin:0">Generated Prompt</span>
+      <span class="tiny" id="charCount">0 chars</span>
+    </div>
+    <textarea id="promptOut" style="margin-top:9px"></textarea>
+    <div class="two" style="margin-top:8px">
+      <button class="btn dark" id="copyBtn">📋 Copy Prompt</button>
+      <button class="btn" id="savePrompt">⬇ Save .TXT</button>
+    </div>
+  </div>
+
+  <div id="sendTab" class="card hidden" style="margin-top:9px">
+    <span class="label">Fast ChatGPT Handoff</span>
+    <div class="status ok">Tap once: the studio rebuilds your newest prompt, copies it to the clipboard, bundles your uploaded product photos, then opens the iPhone share sheet. Choose <b>ChatGPT</b>.</div>
+    <button class="btn gold block" id="shareBtn" style="margin-top:9px;padding:14px;font-size:13px">✦ SEND TO CHATGPT</button>
+    <button class="btn block" id="chatgptBtn" style="margin-top:8px">Open ChatGPT Only</button>
+    <div class="hint">The prompt is copied automatically before the share sheet opens. The website also sends the prompt text together with the product photos when iOS supports it. If ChatGPT accepts the photos but not the text, simply paste — no need to return to this website.</div>
+    <div id="shareSupport" class="status warn" style="margin-top:9px">Checking iPhone share support…</div>
+    <div class="divider"></div>
+    <span class="label">Reference Handoff Checklist</span>
+    <div id="handoff" class="status warn">Add at least one reference photo.</div><div class="tiny" style="margin-top:7px">iOS requires you to choose the destination app from the share sheet; websites cannot silently force-open ChatGPT with attachments without that iOS handoff.</div>
+    <div class="divider"></div>
+    <button class="btn block" id="exportSettings">⬇ Export Studio Settings</button>
+    <label class="btn block" style="margin-top:8px">⬆ Import Studio Settings<input id="importSettings" type="file" accept=".json,application/json" class="hidden"></label>
+  </div>
+</div>
+</aside>
+</div>
+</main>
+
+<div class="footer">
+<div class="footerin">
+  <button class="btn dark grow" id="generateBtn">⚡ Generate Power Prompt</button>
+  <button class="btn gold grow" id="shareBottom">✦ Send to ChatGPT</button>
+</div>
+</div>
+<div id="toast" class="toast">Done</div>
+
+<script>
+(()=>{
+const $=id=>document.getElementById(id);
+const qs=(s,r=document)=>r.querySelector(s), qsa=(s,r=document)=>[...r.querySelectorAll(s)];
+const STORE='pf_power_v2_settings';
+let brand='PARSHWA FASHION', mode='single', files=[], urls=[], activeQuick=new Set();
+
+const LOCATIONS=[
+"Paris Haussmannian boulevard with limestone facades, late-afternoon gold light, premium fashion editorial",
+"Milan luxury fashion district with polished stone, restrained Italian architecture and elegant reflections",
+"Santorini whitewashed alley with bougainvillea, Aegean sea glimpse and warm Mediterranean light",
+"Seoul Seongsu creative district with clean concrete, glass and steel, refined K-fashion editorial",
+"New York SoHo cast-iron architecture, cobblestone texture and cinematic afternoon light",
+"Dubai desert luxury sanctuary with sculptural dunes, long shadows and quiet premium styling",
+"Jaipur refined heritage courtyard with carved pink sandstone architecture and soft warm sun",
+"Private Mediterranean resort terrace with pale stone, sea horizon and understated luxury",
+"Premium charcoal fashion studio with precise directional lighting and zero distraction"
+];
+const MODELS=[
+"Premium South Asian female model aged 20-24, natural warm skin, glossy dark hair, elegant commercial confidence",
+"Young Indian female model around 20, natural skin texture, expressive eyes and refined modern fashion styling",
+"Young Korean female model around 20, refined Ulzzang aesthetics, soft natural hair and realistic skin texture",
+"European editorial female model with high-fashion features, natural skin and sophisticated commercial posture",
+"Mediterranean female model with warm olive complexion, dark wavy hair and resort editorial confidence",
+"South Asian male model aged 22-26, clean editorial grooming and premium fashion posture"
+];
+
+function toast(msg,error=false){let t=$('toast');t.textContent=msg;t.className='toast'+(error?' error':'')+' show';clearTimeout(t._x);t._x=setTimeout(()=>t.classList.remove('show'),2600)}
+function setupOptions(id,cb){qsa('#'+id+' .option').forEach(b=>b.onclick=()=>{qsa('#'+id+' .option').forEach(x=>x.classList.remove('active'));b.classList.add('active');cb(b.dataset.v)})}
+setupOptions('brandOptions',v=>{brand=v; $('customBrand').classList.toggle('hidden',v!=='CUSTOM'); if(v!=='CUSTOM') $('watermark').value=v; save(); build()});
+setupOptions('modeOptions',v=>{mode=v;$('modeKpi').textContent=({single:'Single',all:'All',closeup:'Close',back:'Back',frontback:'F+B'})[v];save();build()});
+
+$('customBrand').oninput=()=>{if(brand==='CUSTOM'){$('watermark').value=$('customBrand').value||'CUSTOM BRAND';build();save()}};
+$('dropZone').onclick=()=>$('photoInput').click(); $('cameraBtn').onclick=()=>$('cameraInput').click();
+$('photoInput').onchange=e=>addFiles([...e.target.files]); $('cameraInput').onchange=e=>addFiles([...e.target.files]);
+['dragenter','dragover'].forEach(ev=>$('dropZone').addEventListener(ev,e=>{e.preventDefault();$('dropZone').classList.add('drag')}));
+['dragleave','drop'].forEach(ev=>$('dropZone').addEventListener(ev,e=>{e.preventDefault();$('dropZone').classList.remove('drag')}));
+$('dropZone').addEventListener('drop',e=>addFiles([...e.dataTransfer.files]));
+
+function addFiles(list){
+ const imgs=list.filter(f=>f.type.startsWith('image/')).slice(0,14-files.length);
+ if(!imgs.length){toast('Choose image files only.',true);return}
+ files.push(...imgs);renderFiles();toast(`Added ${imgs.length} reference photo${imgs.length>1?'s':''}.`);
+}
+function cleanupUrls(){urls.forEach(u=>URL.revokeObjectURL(u));urls=[]}
+function renderFiles(){
+ cleanupUrls(); $('thumbs').innerHTML='';
+ files.forEach((f,i)=>{
+  let u=URL.createObjectURL(f); urls.push(u);
+  let d=document.createElement('div');d.className='thumb';
+  d.innerHTML=`<img src="${u}" alt="Reference ${i+1}"><span class="tindex">${i===0?'MASTER':'REF '+(i+1)}</span><div class="tactions"><button data-a="up" title="Move earlier">‹</button><button data-a="down" title="Move later">›</button><button data-a="del" title="Remove">×</button></div>`;
+  qsa('button',d).forEach(b=>b.onclick=e=>{e.stopPropagation();let a=b.dataset.a;if(a==='del')files.splice(i,1);if(a==='up'&&i>0)[files[i-1],files[i]]=[files[i],files[i-1]];if(a==='down'&&i<files.length-1)[files[i+1],files[i]]=[files[i],files[i+1]];renderFiles()});
+  $('thumbs').appendChild(d);
+ });
+ $('photoCount').textContent=files.length;updateHandoff();
+}
+$('clearPhotos').onclick=()=>{files=[];renderFiles();toast('Reference photos cleared.')};
+
+qsa('.quick').forEach(b=>b.onclick=()=>{let t=b.dataset.t;if(activeQuick.has(t)){activeQuick.delete(t);b.classList.remove('active')}else{activeQuick.add(t);b.classList.add('active')}save();build()});
+
+function val(id){return $(id).value.trim()}
+function chosenLocation(){return val('customLocation') || (val('campaign')==='AUTO'?'Automatically choose a visually exceptional premium campaign environment that matches this exact garment, target market, colour palette and fabric mood.':val('campaign'))}
+function chosenModel(){return val('customModel') || (val('model')==='AUTO'?'Automatically choose the strongest appropriate international model aesthetic for this exact garment and intended customer, without defaulting to one ethnicity.':val('model'))}
+function modeText(){
+ if(mode==='single') return `OUTPUT MODE — SINGLE COLOUR:\nCreate ONE single-colour modelling image. Never make a collage. Choose only one colour genuinely visible in the current references.`;
+ if(mode==='all') return `OUTPUT MODE — ALL COLOURS COLLAGE:\nCreate one premium collage containing ALL and ONLY genuine colour variants. Every colour must appear exactly once. Each variant must use a clearly different pose, hand placement, body rotation and head angle. Never recolour one identical pose into multiple variants.`;
+ if(mode==='closeup') return `OUTPUT MODE — CLOSE-UP:\nCreate one close-up modelling frame that still gives enough garment context. Prioritize exact fabric weave, sheen, stitching, print/embroidery, neckline and construction details.`;
+ if(mode==='back') return `OUTPUT MODE — BACK SHOT:\nCreate a back modelling frame only from back construction actually supported by the references. Never invent a back print, pocket, yoke, seam or label.`;
+ return `OUTPUT MODE — FRONT + BACK:\nCreate coordinated front and back modelling views of the SAME genuine colour and same product. Preserve construction continuity between both views.`;
+}
+function build(){
+ let count=Number(val('colourCount')||0), b=brand==='CUSTOM'?(val('customBrand')||'CUSTOM BRAND'):brand;
+ let colour=count>0?`EXACT COLOUR COUNT LOCK:\nThere are EXACTLY ${count} genuine colour variants. Use exactly ${count}. Do not invent, duplicate, omit, merge, replace or creatively reinterpret any shade.`:`DYNAMIC COLOUR LOCK:\nDetect ALL and ONLY product colours actually visible in the current uploaded references. Never assume a fixed count and never invent a missing colour.`;
+ let wm=val('watermarkStyle')==='No watermark'?'Do not add any watermark.':`Text: "${val('watermark')||b}"\nTreatment: ${val('watermarkStyle')}. Watermark must not cover critical product details.`;
+ let special=[...activeQuick].map(x=>'• '+x).join('\n');
+ let ref=`REFERENCE PRIORITY:\nReference photo #1 is the MASTER visual reference whenever multiple photos conflict. Remaining photos are supporting evidence for back, close-ups, colours and construction.`;
+ let p=`🔥 ${b.toUpperCase()} — INFINITE CAMPAIGN STUDIO POWER V2
+
+MISSION:
+Create an ultra-realistic premium commercial fashion campaign using ONLY the CURRENT product reference photos. Every new upload is a completely new product. Never carry garment details, colours, prints or construction from earlier products.
+
+${ref}
+
+PRODUCT CATEGORY:
+${val('category')}
+
+${colour}
+
+${modeText()}
+
+MODEL:
+${chosenModel()}
+
+CAMPAIGN ENVIRONMENT:
+${chosenLocation()}
+
+POSE DIRECTION:
+${val('pose')==='AUTO'?'Choose a natural premium pose that shows the sold garment clearly and does not hide key construction.':val('pose')}
+
+CAMERA / OPTICS:
+${val('camera')}
+
+ASPECT RATIO:
+${val('aspect')}
+
+🚨 PRODUCT IDENTIFICATION — DO THIS BEFORE STYLING:
+• First identify exactly what is actually being sold from visible construction.
+• Top/shirt only → model that top/shirt only. Never invent matching pants.
+• Pants/trousers only → preserve true two-leg trouser construction, crotch, rise, waistband, leg width and hem.
+• Co-ord/set → treat as a set ONLY when the reference clearly proves it is a matching set.
+• Dress, skirt, jumpsuit or romper → preserve the exact category.
+• Kidswear must remain age-appropriate kidswear.
+• Styling garments may be added only when clearly separate from the sold product and never confused as part of it.
+
+🔒 ORIGINAL PRODUCT = ABSOLUTE MASTER:
+Preserve EXACTLY, without redesign:
+• product type and exact number of pieces
+• colour, undertone, saturation and shade depth
+• print/graphic/stripe/check placement, scale, orientation and colour
+• embroidery, patch, appliqué, logo or decorative placement
+• fabric type, texture, weave/knit, thickness, transparency, weight, sheen and drape
+• smocking, shirring, ruching, pleats, gathers and panel structure
+• seams, topstitching and construction lines
+• neckline, collar, placket, straps and shoulder construction
+• sleeve shape, length, cuffs and volume
+• buttons, zips, hooks, ties and drawstrings
+• pockets — exact number, shape and placement; NEVER add a pocket if none exists
+• waistband, rise, crotch, leg separation, leg width and flare for bottoms
+• garment length, width, fit, silhouette, hemline and overall proportions
+• front/back differences only when supported by references
+
+ABSOLUTE PROHIBITIONS:
+• no invented colour
+• no duplicated colour
+• no product-category conversion
+• no top-to-co-ord conversion
+• no pants-to-skirt conversion
+• no fake pocket
+• no invented print, logo, embroidery or text
+• no redesign, beautification, simplification or 'fashion improvement'
+• no changing fabric from matte to glossy or glossy to matte
+• no changing stripe scale or print placement
+• no accidental cropping that hides the product in a full-body/catalogue request
+• no plastic AI skin, malformed hands, extra fingers, fused limbs or impossible garment geometry
+
+PHOTOREALISM:
+Premium international commercial campaign quality; realistic anatomy and hands; believable natural skin texture; physically plausible fabric gravity, folds and shadows; high textile detail; realistic lighting interaction with the exact fabric; no waxy or overly airbrushed look.
+
+WATERMARK:
+${wm}
+
+POWER LOCKS:
+${special || '• No additional power-lock preset selected.'}
+
+BRAND SPECIAL CORRECTIONS — THESE OVERRIDE ALL CREATIVE CHOICES:
+${val('instructions') || 'No additional special corrections entered.'}
+
+FINAL SELF-CHECK BEFORE OUTPUT:
+1. Compare product category against the references.
+2. Compare exact colour/undertone.
+3. Compare neckline, sleeves, seams, pockets, closures and length.
+4. Compare fabric texture and shine.
+5. Compare print/embroidery placement and scale.
+6. Verify no unsupported garment element was invented.
+7. Verify styling pieces look separate from the sold product.
+8. If any creative idea conflicts with product accuracy, PRODUCT ACCURACY WINS.
+
+Do not explain the prompt. Generate the requested fashion campaign image.`;
+ $('promptOut').value=p.trim();$('charCount').textContent=p.length+' chars';$('colourKpi').textContent=count>0?count:'Auto';save();return p.trim()
+}
+
+function updateHandoff(){
+ if(!files.length){$('handoff').className='status warn';$('handoff').textContent='Add at least one reference photo before sending to an image AI.'}
+ else{$('handoff').className='status ok';$('handoff').innerHTML=`Ready: <b>${files.length}</b> reference photo${files.length>1?'s':''}. Reference #1 is marked MASTER. The share action will include the prompt and will include photos when your iPhone/browser supports file sharing.`}
+}
+function switchTab(name){qsa('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));$('promptTab').classList.toggle('hidden',name!=='prompt');$('sendTab').classList.toggle('hidden',name!=='send')}
+qsa('.tab').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));
+$('generateBtn').onclick=()=>{build();switchTab('prompt');toast('Power prompt generated.')};
+$('promptOut').oninput=()=>{$('charCount').textContent=$('promptOut').value.length+' chars'};
+
+async function copyPrompt(){let p=$('promptOut').value||build();try{await navigator.clipboard.writeText(p)}catch(e){$('promptOut').focus();$('promptOut').select();document.execCommand('copy')}toast('Prompt copied.')}
+$('copyBtn').onclick=copyPrompt;
+$('savePrompt').onclick=()=>{let p=$('promptOut').value||build(),blob=new Blob([p],{type:'text/plain;charset=utf-8'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='Parshwa_Fashion_Power_Prompt.txt';a.click();setTimeout(()=>URL.revokeObjectURL(u),1500);toast('Prompt file prepared.')};
+
+async function writeClipboard(text){
+ try{
+   await navigator.clipboard.writeText(text);
+   return true;
+ }catch(e){
+   try{
+     $('promptOut').value=text;
+     $('promptOut').focus();
+     $('promptOut').select();
+     document.execCommand('copy');
+     return true;
+   }catch(_){ return false; }
+ }
+}
+
+async function sendToChatGPT(){
+  const p=build();
+  const copied=await writeClipboard(p);
+
+  // Create a small prompt text file too. Some iOS share targets preserve files more
+  // reliably than mixed text+images, while the clipboard remains the fastest fallback.
+  const promptFile=new File(
+    [p],
+    'PARSHWA_CAMPAIGN_PROMPT.txt',
+    {type:'text/plain;charset=utf-8'}
+  );
+
+  if(!navigator.share){
+    toast(copied?'Prompt copied. Opening ChatGPT…':'Opening ChatGPT…', !copied);
+    window.open('https://chatgpt.com/','_blank');
+    return;
+  }
+
+  try{
+    const photoFiles=files.slice();
+    let payload={
+      title:'Parshwa Fashion — Campaign Ready',
+      text:p
+    };
+
+    // Prefer photos + prompt text. Add prompt .txt only if the browser allows this file set.
+    if(photoFiles.length && navigator.canShare){
+      if(navigator.canShare({files:photoFiles})){
+        payload.files=photoFiles;
+      }
+      const withPromptFile=[...photoFiles,promptFile];
+      if(navigator.canShare({files:withPromptFile})){
+        // Include the prompt file as a backup attachment only when the browser supports it.
+        payload.files=withPromptFile;
+      }
+    }
+
+    toast(copied?'Prompt copied — choose ChatGPT in the share sheet.':'Choose ChatGPT in the share sheet.');
+    await navigator.share(payload);
+  }catch(e){
+    if(e.name!=='AbortError'){
+      toast('Share failed. Prompt is copied; opening ChatGPT.',true);
+      window.open('https://chatgpt.com/','_blank');
+    }
+  }
+}
+
+$('shareBtn').onclick=sendToChatGPT;
+$('shareBottom').onclick=()=>{switchTab('send');sendToChatGPT()};
+$('chatgptBtn').onclick=()=>window.open('https://chatgpt.com/','_blank');
+
+$('randomLocation').onclick=()=>{$('customLocation').value=LOCATIONS[Math.floor(Math.random()*LOCATIONS.length)];build();toast('Random premium location selected.')};
+$('randomModel').onclick=()=>{$('customModel').value=MODELS[Math.floor(Math.random()*MODELS.length)];build();toast('Random model direction selected.')};
+$('randomAll').onclick=()=>{$('customLocation').value=LOCATIONS[Math.floor(Math.random()*LOCATIONS.length)];$('customModel').value=MODELS[Math.floor(Math.random()*MODELS.length)];$('pose').selectedIndex=1+Math.floor(Math.random()*($('pose').options.length-1));$('camera').selectedIndex=Math.floor(Math.random()*$('camera').options.length);build();toast('Campaign randomized — product locks preserved.')};
+
+function getState(){
+ let ids=['customBrand','campaign','customLocation','model','customModel','aspect','colourCount','category','pose','camera','instructions','watermark','watermarkStyle'];
+ let s={brand,mode,quick:[...activeQuick]};ids.forEach(id=>s[id]=$(id).value);return s
+}
+function save(){try{localStorage.setItem(STORE,JSON.stringify(getState()))}catch(e){}}
+function load(){
+ try{
+  let s=JSON.parse(localStorage.getItem(STORE)||'null');if(!s)return;
+  brand=s.brand||brand;mode=s.mode||mode;
+  ['customBrand','campaign','customLocation','model','customModel','aspect','colourCount','category','pose','camera','instructions','watermark','watermarkStyle'].forEach(id=>{if(s[id]!=null)$(id).value=s[id]});
+  qsa('#brandOptions .option').forEach(b=>b.classList.toggle('active',b.dataset.v===brand));$('customBrand').classList.toggle('hidden',brand!=='CUSTOM');
+  qsa('#modeOptions .option').forEach(b=>b.classList.toggle('active',b.dataset.v===mode));
+  activeQuick=new Set(s.quick||[]);qsa('.quick').forEach(b=>b.classList.toggle('active',activeQuick.has(b.dataset.t)));
+ }catch(e){}
+}
+qsa('input,select,textarea').forEach(el=>{if(!['photoInput','cameraInput','importSettings'].includes(el.id))el.addEventListener('change',()=>{save();build()})});
+
+$('exportSettings').onclick=()=>{let blob=new Blob([JSON.stringify(getState(),null,2)],{type:'application/json'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='PF_Studio_Settings.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1500);toast('Settings exported.')};
+$('importSettings').onchange=async e=>{try{let s=JSON.parse(await e.target.files[0].text());localStorage.setItem(STORE,JSON.stringify(s));location.reload()}catch(err){toast('Invalid settings file.',true)}};
+$('resetBtn').onclick=()=>{if(confirm('Reset saved studio settings? Reference photos will also be cleared.')){localStorage.removeItem(STORE);files=[];location.reload()}};
+
+load();renderFiles();build();updateHandoff();
+const support=$('shareSupport');
+if(support){
+  if(navigator.share){
+    support.className='status ok';
+    support.innerHTML=navigator.canShare
+      ? '✓ iPhone Web Share detected. Product-photo handoff is supported by this browser.'
+      : '✓ iPhone share sheet detected. File-sharing support depends on this browser version.';
+  }else{
+    support.className='status warn';
+    support.textContent='This browser does not expose the iPhone share sheet. The fallback will copy the prompt and open ChatGPT.';
+  }
+}
+
+})();
+</script>
+</body>
+</html>
