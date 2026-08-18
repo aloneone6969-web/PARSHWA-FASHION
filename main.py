@@ -5,7 +5,7 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 BASE_DIR = Path(__file__).resolve().parent
-STATIC_DIR = BASE_DIR / "static"
+STATIC_DIR = BASE_DIR / "Static"
 
 app = FastAPI(
     title="Parshwa Fashion Infinite Campaign Studio",
