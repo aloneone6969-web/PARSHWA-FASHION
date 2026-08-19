@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#17140F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Parshwa Fashion — V16 Campaign Studio</title>
+<style>
+:root{--ink:#17140F;--paper:#F3EEE4;--card:#FFFDF8;--line:#D8CFBC;--gold:#C79A4B;--gold2:#8B6423;--muted:#6B6255;--danger:#A8433A}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-tap-highlight-color:transparent}button,input,select,textarea{font:inherit}
+header{background:linear-gradient(135deg,#17140F,#30291d);color:white;padding:calc(18px + env(safe-area-inset-top)) 16px 18px;border-bottom:2px solid var(--gold)}
+.wrap{max-width:1120px;margin:auto}.badge{color:#f2c86c;font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.pill{display:inline-block;margin-left:7px;border:1px solid #6d5936;background:#332a1d;color:#f4d89c;padding:3px 7px;border-radius:999px;font-size:9px;font-weight:900}h1{font-size:32px;margin:7px 0 5px;line-height:1.05}.sub{margin:0;color:#d7d0c6;font-size:12px;line-height:1.5}
+main{padding:14px 14px 120px}.layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.8fr);gap:16px}@media(max-width:850px){.layout{grid-template-columns:1fr}.sticky{position:static!important}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:15px;margin-bottom:12px}.label{display:block;font-size:10.5px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:var(--gold2);margin:0 0 8px}.hint{font-size:10.5px;color:var(--muted);line-height:1.45}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.between{justify-content:space-between}.grow{flex:1}
+input,select,textarea{width:100%;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 12px;color:var(--ink);font-size:13px;outline:none}textarea{min-height:95px;resize:vertical;line-height:1.5}button{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:12px;padding:10px 12px;font-size:11.5px;font-weight:850;cursor:pointer}.dark{background:var(--ink);color:#fff;border-color:var(--ink)}.gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#fff;border:0}.danger{color:var(--danger)}
+.options{display:flex;gap:7px;flex-wrap:wrap}.option{border-radius:999px}.option.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.upload{border:2px dashed var(--line);border-radius:15px;background:#fff;text-align:center;padding:18px 12px;cursor:pointer;margin:10px 0}.upload.drag{border-color:var(--gold)}.upload .icon{font-size:30px}.upload strong{display:block;font-size:12px;margin-top:5px}.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px;margin-top:10px}.thumb{position:relative;aspect-ratio:1;border:1px solid var(--line);border-radius:12px;overflow:hidden}.thumb img{width:100%;height:100%;object-fit:cover}.tindex{position:absolute;left:5px;bottom:5px;background:#17140fdd;color:white;padding:3px 6px;border-radius:99px;font-size:9px;font-weight:900}.remove{position:absolute;right:5px;top:5px;width:26px;height:26px;border:0;border-radius:50%;padding:0;background:#17140fdd;color:white}
+.modegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:7px}.mode{min-height:58px;text-align:left}.mode.active{background:var(--ink);color:white;border-color:var(--ink)}.mode b{display:block;font-size:11px}.mode span{display:block;font-size:9px;opacity:.72;margin-top:3px;line-height:1.25}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.kpi{border:1px solid var(--line);border-radius:11px;background:#fff;padding:8px}.kpi b{display:block;font-size:15px}.kpi span{font-size:9px;text-transform:uppercase;color:var(--muted);font-weight:900}.status{border:1px solid var(--line);background:#f7f2e9;border-radius:12px;padding:10px;font-size:10.5px;line-height:1.5}.sticky{position:sticky;top:12px}#promptOut{min-height:610px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;background:#faf8f4}.footer{position:fixed;left:0;right:0;bottom:0;z-index:50;background:#f3eee4f2;backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom))}.footerin{max-width:1120px;margin:auto;display:flex;gap:8px}.footerin button{flex:1;padding:14px 11px;font-size:13px}.toast{position:fixed;z-index:100;left:50%;top:calc(10px + env(safe-area-inset-top));transform:translate(-50%,-20px);opacity:0;transition:.2s;background:var(--ink);color:#fff;border-left:4px solid var(--gold);border-radius:11px;padding:10px 14px;font-size:11px;font-weight:850;pointer-events:none}.toast.show{transform:translate(-50%,0);opacity:1}.hidden{display:none!important}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div><span class="badge">◆ Parshwa Fashion Studio</span><span class="pill">V16</span><span class="pill">7 MODES</span><span class="pill">₹0 API</span></div><h1>Infinite Campaign Studio</h1><p class="sub">Upload current product references, choose a mode, and generate a fresh V16 product-locked campaign prompt. No paid API is used.</p></div></header>
+<main class="wrap"><div class="layout"><section>
+<div class="card"><span class="label">Brand</span><div class="options" id="brandOptions"><button class="option active" data-brand="PARSHWA FASHION">Parshwa Fashion</button><button class="option" data-brand="MOMO'S PICK">Momo's Pick</button><button class="option" data-brand="CUSTOM">Custom</button></div><input id="customBrand" class="hidden" style="margin-top:8px" placeholder="Custom brand"></div>
+<div class="card"><div class="row between"><span class="label" style="margin:0">Current Product References</span><div class="row"><button id="cameraBtn">📷 Camera</button><button id="clearBtn" class="danger">Clear</button></div></div><div class="upload" id="dropZone"><div class="icon">🖼️</div><strong>Tap to select reference photos</strong><div class="hint">Use all CURRENT front, back, close-up and colour references. Every new upload is treated as a new product.</div></div><input id="photoInput" type="file" accept="image/*" multiple class="hidden"><input id="cameraInput" type="file" accept="image/*" capture="environment" class="hidden"><div id="thumbs" class="thumbs"></div><div class="kpis"><div class="kpi"><b id="photoCount">0</b><span>References</span></div><div class="kpi"><b id="modeKpi">Auto</b><span>Mode</span></div><div class="kpi"><b id="variantKpi">Dynamic</b><span>Colours</span></div></div></div>
+<div class="card"><span class="label">Shoot Mode — Selected Mode Overrides Auto</span><div class="modegrid" id="modeGrid">
+<button class="mode active" data-mode="auto"><b>Auto Campaign</b><span>1 colour → single, multiple → all</span></button>
+<button class="mode" data-mode="single"><b>Single Colour</b><span>Exactly 1 model + 1 genuine colour</span></button>
+<button class="mode" data-mode="all"><b>All Colours</b><span>All genuine variants, each once</span></button>
+<button class="mode" data-mode="closeup"><b>Close-up</b><span>Fabric + design detail focus</span></button>
+<button class="mode" data-mode="bold"><b>New Bold Pose</b><span>Fresh editorial pose, same product</span></button>
+<button class="mode" data-mode="back"><b>Back View</b><span>Genuine back only, no invention</span></button>
+<button class="mode" data-mode="frontback"><b>Front + Back</b><span>Same exact product, two viewpoints</span></button>
+</div></div>
+<div class="card"><span class="label">Optional Product Corrections</span><textarea id="notes" placeholder="Example: Shirt is NOT crop. No pocket. Purple is light like reference. Drawstring must match. Size/design number only if clearly readable."></textarea></div>
+<div class="card"><span class="label">Output</span><div class="row"><div class="grow"><select id="aspect"><option>9:16</option><option>4:5</option><option>1:1</option><option>16:9</option></select></div><div class="grow"><select id="watermark"><option>PARSHWA FASHION — old repeated serif watermark</option><option>MOMO'S PICK — subtle premium watermark</option><option>NO WATERMARK</option></select></div></div><div class="hint">Colour count is always dynamic from CURRENT references. Size/design number are included only when clearly readable.</div></div>
+</section>
+<aside><div class="sticky"><div class="card"><div class="row between"><span class="label" style="margin:0">V16 Generated Prompt</span><span class="hint" id="charCount">0 chars</span></div><textarea id="promptOut" readonly></textarea><div class="row"><button class="dark grow" id="copyBtn">📋 Copy Prompt</button><button class="grow" id="saveBtn">⬇ Save TXT</button></div></div><div class="card"><span class="label">Free Workflow</span><div class="status">Use your working iPhone <b>Parshwa Fashion AI</b> Shortcut for automatic photo + ChatGPT generation. This web app is your V16 prompt/control studio and uses no paid API.</div><button class="gold" id="openChatgpt" style="width:100%;margin-top:8px">✦ Open ChatGPT</button></div></div></aside>
+</div></main>
+<div class="footer"><div class="footerin"><button class="dark" id="generateBtn">⚡ Generate Fresh V16 Prompt</button><button class="gold" id="copyFooter">📋 Copy</button></div></div><div class="toast" id="toast"></div>
+<script>
+const $=id=>document.getElementById(id);
+const state={brand:'PARSHWA FASHION',mode:'auto',files:[],generation:0,lastCreative:null};
+const locations=['Paris limestone boulevard editorial','Milan luxury fashion district','Tokyo architectural street editorial','Seoul Seongsu creative district','Copenhagen minimal design district','London contemporary gallery quarter','New York SoHo fashion editorial','Mediterranean coastal resort','Dubai sculptural architecture','Barcelona modernist courtyard','Singapore glass-and-greenery luxury','Cape Town coastal architecture','Marrakech contemporary riad','Istanbul Bosphorus modern luxury','Sydney harbour-side minimal architecture','Premium charcoal studio','Contemporary art gallery','International airport luxury editorial','Desert resort editorial','European coastal villa'];
+const castings=['European high-fashion female model','East Asian international fashion model','South Asian premium fashion model','Mediterranean fashion model','Middle Eastern fashion model','African high-fashion model','Latin American fashion model','mixed/global editorial fashion model','Southeast Asian fashion model'];
+const poses=['confident walking stride','three-quarter editorial stance','relaxed architectural lean','dynamic mid-step','controlled fashion movement','elegant asymmetric standing pose','natural seated editorial pose','strong body turn with garment visible'];
+const cameras=['85mm full-body commercial fashion framing','50mm environmental editorial framing','70mm three-quarter fashion composition','low eye-level architectural fashion perspective','clean eye-level catalogue-editorial hybrid','cinematic long-lens compression with product clarity'];
+const lights=['soft colour-neutral daylight on garment','diffused studio daylight with neutral garment colour','late-afternoon atmosphere with colour-neutral fill on garment','architectural shadow play while garment remains colour-accurate','soft overcast editorial light for exact colour fidelity'];
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(t.timer);t.timer=setTimeout(()=>t.classList.remove('show'),2200)}
+function pickDifferent(arr,last){let pool=arr.filter(x=>x!==last);return pool[Math.floor(Math.random()*pool.length)]||arr[0]}
+function creativeSeed(){const last=state.lastCreative||{};const c={location:pickDifferent(locations,last.location),casting:pickDifferent(castings,last.casting),pose:pickDifferent(poses,last.pose),camera:pickDifferent(cameras,last.camera),light:pickDifferent(lights,last.light)};state.lastCreative=c;return c}
+function addFiles(list){const imgs=[...list].filter(f=>f.type.startsWith('image/')).slice(0,14-state.files.length);imgs.forEach(f=>state.files.push(f));renderFiles();toast(`${imgs.length} reference${imgs.length===1?'':'s'} added`)}
+function renderFiles(){$('thumbs').innerHTML='';state.files.forEach((f,i)=>{const d=document.createElement('div');d.className='thumb';const u=URL.createObjectURL(f);d.innerHTML=`<img src="${u}"><span class="tindex">#${i+1}</span><button class="remove" data-i="${i}">×</button>`;d.querySelector('img').onload=()=>URL.revokeObjectURL(u);$('thumbs').appendChild(d)});document.querySelectorAll('.remove').forEach(b=>b.onclick=e=>{e.stopPropagation();state.files.splice(+b.dataset.i,1);renderFiles()});$('photoCount').textContent=state.files.length}
+$('dropZone').onclick=()=>$('photoInput').click();$('cameraBtn').onclick=()=>$('cameraInput').click();$('photoInput').onchange=e=>{addFiles(e.target.files);e.target.value=''};$('cameraInput').onchange=e=>{addFiles(e.target.files);e.target.value=''};$('clearBtn').onclick=()=>{state.files=[];renderFiles();toast('References cleared')};
+['dragenter','dragover'].forEach(n=>$('dropZone').addEventListener(n,e=>{e.preventDefault();$('dropZone').classList.add('drag')}));['dragleave','drop'].forEach(n=>$('dropZone').addEventListener(n,e=>{e.preventDefault();$('dropZone').classList.remove('drag')}));$('dropZone').addEventListener('drop',e=>addFiles(e.dataTransfer.files));
+document.querySelectorAll('[data-brand]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-brand]').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.brand=b.dataset.brand;$('customBrand').classList.toggle('hidden',state.brand!=='CUSTOM')});
+document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-mode]').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.mode=b.dataset.mode;const names={auto:'Auto',single:'Single',all:'All',closeup:'Close-up',bold:'Bold Pose',back:'Back',frontback:'Front+Back'};$('modeKpi').textContent=names[state.mode];generatePrompt(false)});
+function brand(){return state.brand==='CUSTOM'?($('customBrand').value.trim()||'CUSTOM FASHION BRAND'):state.brand}
+function modePrompt(){const m={
+auto:`MODE: AUTO CAMPAIGN. Analyze CURRENT references and dynamically determine N genuine unique colour variants. If N=1 create one single-colour modelling campaign. If N>1 create exactly N colour representations, every genuine variant exactly once.`,
+single:`MODE: SINGLE COLOUR. THIS OVERRIDES ALL AUTO MULTI-COLOUR BEHAVIOUR. Regardless of how many colours are visible, create exactly 1 model, 1 product representation and 1 genuine reference-supported colour. Other colours are reference information only and must not appear.`,
+all:`MODE: ALL COLOURS. Dynamically determine N genuine unique sale colour variants from ALL CURRENT references. Create exactly N representations. Every genuine colour appears once, no missing/extra/duplicate/invented/substituted colour. Each colour uses a different natural pose.`,
+closeup:`MODE: CLOSE-UP. Create one premium close-up emphasizing fabric, weave, print, graphic, embroidery, stitching, neckline/collar, buttons and key construction. Do not automatically switch to all colours because multiple variants exist.`,
+bold:`MODE: NEW BOLD POSE. Create one noticeably different confident editorial pose. Change presentation only; product shape, length, width, fit, design, construction, fabric and colour tone remain unchanged.`,
+back:`MODE: BACK VIEW. Create a genuine back-view presentation. Never invent unsupported back graphics, embroidery, pockets, seams, panels, openings, zippers or decoration.`,
+frontback:`MODE: FRONT AND BACK. Create exactly two clear representations of the same exact product: one front view and one back view. Only viewpoint changes; product shape, length, width, fit, construction, fabric and colour tone remain identical.`};return m[state.mode]}
+function baseV16(c){return `🔥 ${brand()} — UNIVERSAL PREMIUM FASHION CAMPAIGN MASTER V16
+
+Analyze ONLY the CURRENT attached product reference images. Every new run is a fresh product analysis. Never transfer product facts from older products.
+
+HIGHEST PRIORITY:
+1. USER-SELECTED MODE
+2. CURRENT PRODUCT REFERENCES
+3. Product category + number of pieces
+4. Shape + proportions
+5. Length + width + fitting
+6. Construction
+7. Exact colour + exact colour tone
+8. Print/graphic/embroidery/pattern
+9. Fabric/texture
+10. Dynamic colour count
+11. Size/design number only if clearly readable
+12. Product visibility
+13. Campaign creativity
+
+${modePrompt()}
+
+ORIGINAL PRODUCT = ABSOLUTE VISUAL MASTER.
+The model adapts to the garment; the garment never adapts to the model.
+
+IDENTIFY FIRST FROM VISIBLE CONSTRUCTION:
+• exact product category and number of pieces
+• exact overall shape and proportions
+• exact garment length and width
+• shoulder/body/sleeve proportions
+• neckline/collar/sleeves/cuffs
+• waist/rise/crotch/leg construction when applicable
+• fitting and silhouette
+• pockets OR pocket absence
+• buttons/zippers/drawstrings/closures
+• panels/seams/stitching/pleats/gathers/smocking/shirring
+• hemline/slits/cut-outs/straps
+• print/graphic/typography/embroidery/pattern/wash/gradient/colour blocking
+• fabric texture, weave, thickness, sheen and drape
+• every genuine colour variant + exact colour tone
+
+CATEGORY LOCK:
+Never assume a set. Top/shirt stays top/shirt. Pants stay true two-leg pants. Skirt stays skirt. Dress stays dress. Jumpsuit stays jumpsuit. Co-ord only when CURRENT references clearly prove it. Never invent matching pieces or convert one category into another.
+
+ABSOLUTE GEOMETRY + FIT LOCK:
+Preserve exact shape, proportions, length, width, shoulder width, body width, sleeve dimensions, armhole, waist, rise/crotch, hip proportion, leg width, flare/taper, bottom opening, crop/non-crop proportion, silhouette, drape and fall. Never shorten, lengthen, widen, narrow, tighten, loosen, crop, over-size, slim or exaggerate the product beyond the reference.
+
+CONSTRUCTION LOCK:
+Never add/remove pockets, seams, panels, buttons, zippers, drawstrings, collars, cuffs, slits, straps or decoration. Difficult genuine details must still be preserved.
+
+DESIGN LOCK:
+Preserve exact print/graphic/typography/embroidery placement, scale and orientation; stripe width/spacing/direction; check dimensions; pattern placement; wash/spray/gradient/ombré; colour blocking and visible logos. Never relocate, simplify or invent design elements.
+
+FABRIC LOCK:
+Preserve texture, weave, thickness, weight, structure, matte/gloss finish, sheen, ribbing, crinkle, softness, natural folds and drape. Structured must not become fluid; matte must not become glossy.
+
+🚨 EXACT COLOUR TONE LOCK:
+Preserve every genuine colour's hue, undertone, saturation, brightness, warmth/coolness, depth, wash, fading, contrast and gradient. Never lighten/darken/warm/cool/saturate/desaturate/substitute product colours. Lighting and grading may affect the environment and skin, but garment illumination must remain commercially colour-accurate.
+
+DYNAMIC COLOUR AUDIT — NO FIXED NUMBER:
+Inspect ALL CURRENT references. Count UNIQUE sale colour variants, not photos. Similar shades may be genuinely different; repeated angles/lighting of the same shade are duplicates. Perform discovery, missed-colour check, duplicate check and tone verification. Let verified unique count = N. N has no minimum, maximum or default. Selected MODE controls how many colours are displayed.
+
+SIZE + DESIGN NUMBER — ZERO GUESSING:
+If size/size range is clearly readable, reproduce exactly. If design number/code is clearly readable, reproduce exactly character-for-character. If blurry, cropped, hidden, ambiguous or uncertain, OMIT it completely. Never guess or reuse older product information. If detected, display subtly in a clean corner as SIZE: ... and/or DESIGN NO: ... without covering product/watermark.
+
+GLOBAL VARIETY / NO-DEFAULT ENGINE:
+Do NOT default to Mumbai, India, South Asian models, Seoul, Korean models, Paris, or any single market. No city/country/ethnicity is the default. Across repeated generations prefer different suitable combinations of city, country, casting aesthetic, hairstyle, pose, environment, camera, lighting and story.
+
+FRESH CREATIVE DIRECTION FOR THIS GENERATION:
+• Location/environment: ${c.location}
+• Casting direction: ${c.casting}
+• Pose direction: ${c.pose}
+• Camera/composition: ${c.camera}
+• Lighting: ${c.light}
+Use these as a creative direction unless incompatible with the actual product category/selected mode. Product fidelity always wins.
+
+MODEL AUTO-SELECTION:
+Adult women's wear → adult female fashion model. Adult men's wear → adult male fashion model. Kidswear → age-appropriate child model. Do not make adult clothing look like childrenswear. Choose body proportions that preserve original garment fit.
+
+PRODUCT = HERO:
+Hands, hair, bags, jackets, props and shadows must not hide important graphics, embroidery, neckline, waist, pockets or construction.
+
+QUALITY:
+Ultra-realistic premium commercial fashion photography; natural skin; correct anatomy/hands; realistic garment folds; professional lighting; accurate shadows; crisp textile detail; premium advertising finish; no warped garments, fake seams, fake pockets, duplicated details or invented typography.
+
+WATERMARK:
+${$('watermark').value==='NO WATERMARK'?'No watermark.':$('watermark').value.startsWith("MOMO")?"Apply a subtle premium MOMO'S PICK watermark without covering the product.":"Apply the established PARSHWA FASHION watermark: thin elegant white serif ALL CAPS, semi-transparent, approximately 3 repetitions horizontally across the middle/lower-middle, never covering key product details."}
+
+ASPECT RATIO: ${$('aspect').value}
+
+USER CORRECTIONS:
+${$('notes').value.trim()||'None. Follow CURRENT references only.'}
+
+FINAL AUDIT BEFORE RETURNING THE PROMPT:
+Confirm selected mode is obeyed; category/pieces correct; shape/proportions/length/width/fit unchanged; construction unchanged; print/embroidery/graphic/pattern exact; fabric accurate; exact colour tone preserved; dynamic colour count analyzed correctly; Single Colour = exactly one representation; All Colours = exactly N; no invented/duplicate/missing colour; size/design only when readable; no unnecessary Mumbai/India/Korean/South Asian/default-market repetition; product clearly visible.
+
+GOLDEN RULE:
+MODE controls WHAT to create. V16 controls product accuracy. Campaign/model/pose/location/camera/lighting may change. PRODUCT SHAPE, LENGTH, WIDTH, FITTING, CONSTRUCTION, DESIGN, FABRIC AND COLOUR TONE CANNOT CHANGE.
+
+TASK:
+Using ALL CURRENT references, create ONE complete production-ready IMAGE-GENERATION PROMPT for the selected mode. Explicitly describe the actual detected product details so the downstream image generator can preserve them. CURRENT PRODUCT REFERENCES ARE THE ABSOLUTE VISUAL MASTER.
+
+RETURN ONLY ONE COMPLETE FINAL READY-TO-USE IMAGE-GENERATION PROMPT. Do not explain analysis, output JSON, ask questions or provide alternatives.`}
+function generatePrompt(fresh=true){if(fresh)state.generation++;const c=fresh?creativeSeed():(state.lastCreative||creativeSeed());const p=baseV16(c);$('promptOut').value=p;$('charCount').textContent=`${p.length} chars`;return p}
+$('generateBtn').onclick=()=>{generatePrompt(true);toast('Fresh V16 campaign prompt generated')};$('copyFooter').onclick=$('copyBtn').onclick=async()=>{const p=$('promptOut').value||generatePrompt(false);try{await navigator.clipboard.writeText(p)}catch{$('promptOut').select();document.execCommand('copy')}toast('Prompt copied')};$('saveBtn').onclick=()=>{const p=$('promptOut').value||generatePrompt(false),b=new Blob([p],{type:'text/plain'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='PARSHWA_V16_PROMPT.txt';a.click();URL.revokeObjectURL(u);toast('Prompt saved')};$('openChatgpt').onclick=()=>window.open('https://chatgpt.com/','_blank');['notes','aspect','watermark','customBrand'].forEach(id=>$(id).addEventListener('input',()=>generatePrompt(false)));generatePrompt(true);renderFiles();
+</script>
+</body>
+</html>
